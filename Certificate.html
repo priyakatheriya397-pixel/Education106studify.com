@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Premium Certificate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -11,7 +12,7 @@
             padding: 0;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: #ffffff;
             min-height: 100vh;
@@ -19,8 +20,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
         }
+
         /* Top Message (Green Cursive Style) */
         .premium-text {
             font-family: 'Georgia', serif;
@@ -32,138 +34,194 @@
             text-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
             line-height: 1.3;
         }
-        /* Smaller, Rounder, Pure CSS Golden Certificate */
+
+        /* Pure CSS Golden Certificate Frame */
         .certificate-frame {
-            width: 100%;
-            max-width: 420px;
-            background: #fffdf4; /* Rich Ivory Paper */
-            border: 10px solid #d4af37; /* Bright Shiny Gold Border */
-            border-radius: 30px; /* कोनों को पूरी तरह गोल किया */
-            padding: 30px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
-            text-align: center;
+            background: #ffffff;
             color: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border: 8px solid #d4af37; /* Golden Border */
+            outline: 4px solid #f3e5ab;
+            outline-offset: -12px;
+            text-align: center;
             position: relative;
-            overflow: hidden;
         }
-        /* Red & Gold Corner Ribbon/Band */
-        .gift-ribbon {
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            width: 120px;
-            background: #dc2626;
-            color: #fef08a;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 4px 0;
-            transform: rotate(45deg);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
-            border: 1px solid #d4af37;
-        }
-        .cert-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #aa7c11;
-            letter-spacing: 2px;
+
+        .cert-header {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .cert-sub {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .student-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #4f46e5;
+            margin: 15px 0;
+            border-bottom: 2px solid #cbd5e1;
+            display: inline-block;
+            padding: 0 30px;
+        }
+
+        .cert-text {
+            font-size: 15px;
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+            line-height: 1.6;
+        }
+
+        .course-title {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .signature {
+            text-align: center;
+        }
+
+        .sig-line {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            color: #0f172a;
+            border-bottom: 1px solid #94a3b8;
+            padding-bottom: 2px;
             margin-bottom: 5px;
         }
-        .cert-sub {
-            font-size: 0.8rem;
+
+        .sig-title {
+            font-size: 12px;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
         }
-        .cert-present {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #475569;
-            margin-bottom: 10px;
-        }
-        /* Interactive Name Input Area */
-        .name-space-container {
-            margin: 20px 0;
-        }
-        .name-input-field {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            font-size: 2.2rem;
-            color: #1e293b;
+
+        .golden-badge {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            text-align: center;
+            font-size: 11px;
+            color: #583c00;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+        }
+
+        /* Action Buttons */
+        .btn-container {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
             border: none;
-            border-bottom: 3px dashed #b38728; /* सुंदर गोल्डन डैश अंडरलाइन */
-            background: transparent;
-            width: 90%;
-            outline: none;
-            padding-bottom: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        .cert-done {
-            font-size: 0.85rem;
-            color: #475569;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            padding: 0 10px;
+
+        .btn-download {
+            background: #22c55e;
+            color: white;
         }
-        /* Golden Badge Visual inside code */
-        .badge-box {
-            display: inline-block;
-            position: relative;
-            margin-top: 5px;
+
+        .btn-download:hover {
+            background: #16a34a;
         }
-        .gold-badge {
-            font-size: 2.8rem;
-            line-height: 1;
+
+        .btn-home {
+            background: #3b82f6;
+            color: white;
         }
-        /* Bottom Message (Orange/Gold Style) */
-        .screenshot-text {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            font-size: 2.5rem;
-            color: #f59e0b;
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+
+        .btn-home:hover {
+            background: #2563eb;
+        }
+
+        /* Print Settings (To hide buttons while printing) */
+        @media print {
+            body {
+                background: white;
+            }
+            .premium-text, .btn-container {
+                display: none;
+            }
+            .certificate-frame {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Message -->
     <div class="premium-text">
-        If you want your original certificate, please pay Rs 40.
+        Congratulations! You have successfully completed the course.
     </div>
 
-    <!-- 100% Pure HTML/CSS Premium Certificate Card -->
+    <!-- Golden Certificate Frame -->
     <div class="certificate-frame">
-        <!-- Gift Ribbon Corner -->
-        <div class="gift-ribbon">PREMIUM ★</div>
-        
-        <div class="cert-title">Certificate</div>
-        <div class="cert-sub">of Achievement</div>
-        
-        <div class="cert-present">This is proudly presented to</div>
-        
-        <!-- User Input Row -->
-        <div class="name-space-container">
-            <input type="text" class="name-input-field" placeholder="Type Name Here..." value="">
+        <div class="cert-header">Certificate of Completion</div>
+        <div class="cert-sub">This is proudly presented to</div>
+
+        <div class="student-name" id="studentName">Priya Katheriya</div>
+
+        <div class="cert-text">
+            For successfully demonstrating dedication, knowledge, and excellence in completing the 
+            <span class="course-title">Educational Premium Learning Course</span>.
         </div>
-        
-        <div class="cert-done">For successfully completing all the challenges and levels with outstanding performance.</div>
-        
-        <!-- Big Gold Seal Badge -->
-        <div class="badge-box">
-            <span class="gold-badge">🎖️</span>
+
+        <div class="cert-footer">
+            <div class="signature">
+                <div class="sig-line">Studyfy Portal</div>
+                <div class="sig-title">Authorized Instructor</div>
+            </div>
+
+            <div class="golden-badge">
+                OFFICIAL
+            </div>
+
+            <div class="signature">
+                <div class="sig-line">2026 Verified</div>
+                <div class="sig-title">Date of Issue</div>
+            </div>
         </div>
     </div>
 
-    <!-- Bottom Message -->
-    <div class="screenshot-text">
-        Screenshot It Now Only!
+    <!-- Action Buttons -->
+    <div class="btn-container">
+        <button onclick="window.print()" class="btn btn-download">Print / Download PDF</button>
+        <a href="index.html" class="btn btn-home">Back to Home</a>
     </div>
 
 </body>
