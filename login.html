@@ -108,13 +108,13 @@
             <input type="password" placeholder="••••••••">
         </div>
 
-        <!-- यह बटन सीधे indes.html पर ले जाएगा -->
+        <!-- यह बटन यूजर को सीधे E-Learning Platform वाले पेज पर ले जाएगा -->
         <button class="submit-btn" onclick="loginAndRedirect()">Send OTP</button>
     </div>
 
     <script>
         function loginAndRedirect() {
-            // यूजर का नाम मेमोरी में सेव करना (सर्टिफिकेट के लिए)
+            // यूजर का नाम सर्टिफिकेट के लिए लोकल मेमोरी में सेव करना
             var userNameInput = document.getElementById("username").value;
             if(userNameInput.trim() !== "") {
                 localStorage.setItem("userRegisteredName", userNameInput);
@@ -122,8 +122,8 @@
                 localStorage.setItem("userRegisteredName", "Student");
             }
             
-            // अब बटन दबाते ही सीधे 'indes.html' (E-Learning Platform) खुलेगा
-            window.location.href = "indes.html";
+            // पूरा लाइव लिंक डालकर डायरेक्ट फॉरवर्ड करना (ताकि कोई एरर न आए)
+            window.location.replace("https://github.io");
         }
     </script>
 
