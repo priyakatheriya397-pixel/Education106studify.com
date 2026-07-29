@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Quiz App - Level 2</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffd700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Top Navigation Header */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .back-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #ffd700;
+            color: #000000;
+        }
+
+        /* Quiz Card Styling */
+        .quiz-card {
+            background-color: #0d1b2a;
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Question Banner Box */
+        .question-box {
+            background: linear-gradient(180deg, #ffe033 0%, #ffd700 100%);
+            color: #0d1b2a;
+            padding: 18px 15px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            line-height: 1.4;
+        }
+
+        /* Options Stack */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: #111111;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            color: #ffd700;
+            padding: 14px 18px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            background: #222000;
+            border-color: #ffffff;
+        }
+
+        .option-btn input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            outline: none;
+            margin-right: 15px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .option-btn input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #ffd700;
+            border-radius: 50%;
+        }
+
+        .option-btn.selected {
+            background: #ffd700;
+            color: #000000;
+            box-shadow: 0 0 12px #ffd700;
+        }
+
+        .option-btn.selected input[type="radio"] {
+            border-color: #000000;
+        }
+
+        .option-btn.selected input[type="radio"]:checked::before {
+            background-color: #000000;
+        }
+
+        /* Bottom Controls */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .skip-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #b8860b;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skip-btn:hover {
+            background: #332200;
+            border-color: #ffd700;
+        }
+
+        .next-btn {
+            background: linear-gradient(180deg, #ffe033 0%, #b8860b 100%);
+            color: #000000;
+            border: 2px solid #ffffff;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            flex-grow: 1;
+            transition: all 0.2s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        .next-btn:disabled {
+            background: #333333;
+            color: #777777;
+            border-color: #555555;
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .q-page {
+            display: none;
+        }
+
+        .q-page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Top Nav Header -->
+        <div class="top-nav">
+            <button id="global-back-btn" class="back-btn" onclick="prevQuestion()" style="visibility: hidden;">⬅ Back</button>
+            <span style="font-weight: bold; font-size: 0.9rem;">Golden Level 2</span>
+        </div>
+
+        <h1 class="main-title">GOLDEN LEVEL 2</h1>
+
+        <!-- QUESTION 1 -->
+        <div id="q1" class="q-page active">
+            <div class="quiz-card">
+                <div class="question-box">1. Which element has the highest thermal conductivity of any known natural material?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt1" value="A"> A. Graphene</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="B"> B. Diamond</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="C"> C. Silver</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="D"> D. Copper</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(2)">Skip ➡</button>
+                <button id="btn-next-1" class="next-btn" disabled onclick="nextQuestion(2)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div id="q2" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">2. What is the approximate value of the Chandrasekhar Limit for white dwarf stars?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt2" value="A"> A. 1.4 Solar Masses</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="B"> B. 2.1 Solar Masses</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="C"> C. 3.0 Solar Masses</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="D"> D. 0.8 Solar Masses</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(3)">Skip ➡</button>
+                <button id="btn-next-2" class="next-btn" disabled onclick="nextQuestion(3)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div id="q3" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">3. Which time complexity is associated with the worst-case scenario of QuickSort?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt3" value="A"> A. O(n log n)</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="B"> B. O(n²)</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="C"> C. O(n)</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="D"> D. O(log n)</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(4)">Skip ➡</button>
+                <button id="btn-next-3" class="next-btn" disabled onclick="nextQuestion(4)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 4 -->
+        <div id="q4" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">4. What particle is hypothesized to mediate the gravitational force?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt4" value="A"> A. Gluon</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="B"> B. Graviton</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="C"> C. Higgs Boson</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="D"> D. Tachyon</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(5)">Skip ➡</button>
+                <button id="btn-next-4" class="next-btn" disabled onclick="nextQuestion(5)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 5 -->
+        <div id="q5" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">5. Which ancient empire was ruled by King Hammurabi, famous for his legal code?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt5" value="A"> A. Assyrian Empire</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="B"> B. Babylonian Empire</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="C"> C. Akkadian Empire</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="D"> D. Persian Empire</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(6)">Skip ➡</button>
+                <button id="btn-next-5" class="next-btn" disabled onclick="nextQuestion(6)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 6 -->
+        <div id="q6" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">6. What chemical is produced by human muscle tissue during anaerobic respiration?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt6" value="A"> A. Citric Acid</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="B"> B. Lactic Acid</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="C"> C. Pyruvic Acid</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="D"> D. Acetic Acid</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(7)">Skip ➡</button>
+                <button id="btn-next-6" class="next-btn" disabled onclick="nextQuestion(7)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 7 -->
+        <div id="q7" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">7. Which layer of Earth's atmosphere contains the ionosphere?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt7" value="A"> A. Troposphere</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="B"> B. Stratosphere</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="C"> C. Thermosphere</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="D"> D. Exosphere</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(8)">Skip ➡</button>
+                <button id="btn-next-7" class="next-btn" disabled onclick="nextQuestion(8)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 8 -->
+        <div id="q8" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">8. What is the only letter that does NOT appear on the Periodic Table of Elements?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt8" value="A"> A. Q</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="B"> B. J</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="C"> C. X</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="D"> D. Z</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(9)">Skip ➡</button>
+                <button id="btn-next-8" class="next-btn" disabled onclick="nextQuestion(9)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 9 -->
+        <div id="q9" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">9. Which phenomenon proves that light behaves as a particle as well as a wave?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt9" value="A"> A. Diffraction</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="B"> B. Photoelectric Effect</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="C"> C. Refraction</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="D"> D. Polarization</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(10)">Skip ➡</button>
+                <button id="btn-next-9" class="next-btn" disabled onclick="nextQuestion(10)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 10 -->
+        <div id="q10" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">10. What is the deepest known location in the Earth's oceans?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt10" value="A"> A. Puerto Rico Trench</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="B"> B. Challenger Deep</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="C"> C. Java Trench</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="D"> D. Tonga Trench</label>
+                </div>
+            </div>
+
+            <!-- BUTTON CHANGED HERE TO GO TO LEVEL 3 -->
+            <div class="btn-container">
+                <button class="skip-btn" onclick="goToLevel3()">Skip ➡</button>
+                <button id="btn-next-10" class="next-btn" disabled onclick="goToLevel3()">Go to Level 3 ➡</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        // Selection Highlight & Enable Next Button
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const parentList = this.parentElement;
+                parentList.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const radio = this.querySelector('input[type="radio"]');
+                if(radio) radio.checked = true;
+
+                const currentNextBtn = document.getElementById('btn-next-' + currentQuestion);
+                if (currentNextBtn) {
+                    currentNextBtn.disabled = false;
+                }
+            });
+        });
+
+        function showQuestion(qNum) {
+            document.querySelectorAll('.q-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('q' + qNum).classList.add('active');
+            currentQuestion = qNum;
+
+            const backBtn = document.getElementById('global-back-btn');
+            if (currentQuestion > 1) {
+                backBtn.style.visibility = 'visible';
+            } else {
+                backBtn.style.visibility = 'hidden';
+            }
+        }
+
+        function nextQuestion(nextQ) {
+            showQuestion(nextQ);
+        }
+
+        function skipQuestion(nextQ) {
+            showQuestion(nextQ);
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        // Redirects to Level 3
+        function goToLevel3() {
+            window.location.href = "GKlevel3.html";
+        }
+    </script>
+</body>
+</html>
