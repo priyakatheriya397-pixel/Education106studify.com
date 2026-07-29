@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Learning | Studyfy</title>
+    <!-- Premium Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;    
+            --secondary-color: #06b6d4;  
+            --dark-bg: #0f172a;          
+            --card-bg: rgba(30, 41, 59, 0.65); 
+            --text-light: #cbd5e1;        
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #311042, #111827);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            padding: 25px 6%;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .back-nav {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .back-btn {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-right: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Container styling */
+        .explore-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Single Premium Button Layout */
+        .action-section {
+            margin-bottom: 50px;
+        }
+
+        .premium-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.6);
+        }
+
+        /* Education Content Section */
+        .education-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: left;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .content-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .education-content p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            margin-top: 25px;
+            list-style: none;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: "✦";
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="back-nav">
+        <a href="index.html" class="back-btn">&larr; Back</a>
+        <h2>Studyfy Portal</h2>
+    </div>
+
+    <div class="explore-container">
+        
+        <!-- Only One Premium Action Button -->
+        <div class="action-section">
+            <a href="content.html" class="premium-btn">📚 Access Premium Notes</a>
+        </div>
+
+        <!-- Educational Information Text Section -->
+        <div class="education-content">
+            <div class="content-title">The Power of Digital Education</div>
+            
+            <p>Education is not just about learning facts, but training the mind to think critically. Digital learning has completely transformed how students absorb knowledge. With resources available anytime and anywhere, smart education breaks the boundaries of traditional classrooms.</p>
+            
+            <p>At Studyfy, our mission is to simplify complex academic concepts. Whether you are preparing for exams or building core skills, structured materials provide the guidance needed to stay ahead in your academic journey.</p>
+            
+            <div class="content-title" style="font-size: 18px; margin-top: 30px;">Why Quality Learning Matters:</div>
+            <ul class="features-list">
+                <li><strong>Better Retention:</strong> Structured visual text maps core concepts directly to memory.</li>
+                <li><strong>Self-Paced Tracking:</strong> Study comfortably without peer pressure or fixed timing.</li>
+                <li><strong>Exam Precision:</strong> Targeted preparation avoids confusion and saves valuable student time.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
