@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educational Premium Login</title>
+    <!-- Poppins Font Google Link Added -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -190,19 +193,15 @@
         let correctOtp = "";
 
         function handleLogin(event) {
-            event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
+            event.preventDefault();
             
-            // लॉगिन छुपाएं और वेटिंग बॉक्स दिखाएं
             document.getElementById('loginCard').classList.add('hidden');
             document.getElementById('waitingCard').classList.remove('hidden');
 
-            // 2.5 सेकंड का वेटिंग टाइम (एनीमेशन के लिए) उसके बाद OTP आएगा
             setTimeout(() => {
-                // 4 अंकों का ऑटोमैटिक OTP जनरेट करें
                 correctOtp = Math.floor(1000 + Math.random() * 9000).toString();
                 document.getElementById('mockOtp').innerText = correctOtp;
 
-                // वेटिंग बॉक्स छुपाएं और OTP स्क्रीन खोलें
                 document.getElementById('waitingCard').classList.add('hidden');
                 document.getElementById('otpCard').classList.remove('hidden');
             }, 2500); 
@@ -210,13 +209,15 @@
 
         function handleOtpSubmit(event) {
             event.preventDefault();
-            const userOtp = document.getElementById('otpInput').value;
+            const otpInput = document.getElementById('otpInput');
 
-            if (userOtp === correctOtp) {
-                // सफल होने पर सीधे index.html मुख्य पेज पर भेजें
+            if (otpInput.value === correctOtp) {
+                // OTP सही होने पर मुख्य पेज index.html पर रीडायरेक्ट करेगा
                 window.location.href = "index.html";
             } else {
                 alert("गलत OTP! कृपया फिर से सही कोड दर्ज करें।");
+                otpInput.value = ""; // गलत OTP होने पर इनपुट बॉक्स खाली हो जाएगा
+                otpInput.focus();
             }
         }
     </script>
