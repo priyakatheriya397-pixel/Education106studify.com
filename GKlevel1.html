@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Quiz App - Level 1</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffd700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Top Navigation Header */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .back-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #ffd700;
+            color: #000000;
+        }
+
+        /* Quiz Card Styling */
+        .quiz-card {
+            background-color: #0d1b2a;
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Question Banner Box */
+        .question-box {
+            background: linear-gradient(180deg, #ffe033 0%, #ffd700 100%);
+            color: #0d1b2a;
+            padding: 18px 15px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            line-height: 1.4;
+        }
+
+        /* Options Stack */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: #111111;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            color: #ffd700;
+            padding: 14px 18px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            background: #222000;
+            border-color: #ffffff;
+        }
+
+        .option-btn input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            outline: none;
+            margin-right: 15px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .option-btn input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #ffd700;
+            border-radius: 50%;
+        }
+
+        .option-btn.selected {
+            background: #ffd700;
+            color: #000000;
+            box-shadow: 0 0 12px #ffd700;
+        }
+
+        .option-btn.selected input[type="radio"] {
+            border-color: #000000;
+        }
+
+        .option-btn.selected input[type="radio"]:checked::before {
+            background-color: #000000;
+        }
+
+        /* Bottom Controls */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .skip-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #b8860b;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skip-btn:hover {
+            background: #332200;
+            border-color: #ffd700;
+        }
+
+        .next-btn {
+            background: linear-gradient(180deg, #ffe033 0%, #b8860b 100%);
+            color: #000000;
+            border: 2px solid #ffffff;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            flex-grow: 1;
+            transition: all 0.2s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        .next-btn:disabled {
+            background: #333333;
+            color: #777777;
+            border-color: #555555;
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .q-page {
+            display: none;
+        }
+
+        .q-page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Top Nav Header -->
+        <div class="top-nav">
+            <button id="global-back-btn" class="back-btn" onclick="prevQuestion()" style="visibility: hidden;">⬅ Back</button>
+            <span style="font-weight: bold; font-size: 0.9rem;">Golden Level 1</span>
+        </div>
+
+        <h1 class="main-title">GOLDEN LEVEL 1</h1>
+
+        <!-- QUESTION 1 -->
+        <div id="q1" class="q-page active">
+            <div class="quiz-card">
+                <div class="question-box">1. What is the capital of France?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt1" value="A"> A. London</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="B"> B. Berlin</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="C"> C. Paris</label>
+                    <label class="option-btn"><input type="radio" name="opt1" value="D"> D. Madrid</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(2)">Skip ➡</button>
+                <button id="btn-next-1" class="next-btn" disabled onclick="nextQuestion(2)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div id="q2" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">2. According to Greek mythology, who is considered the king of the gods?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt2" value="A"> A. Apollo</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="B"> B. Zeus</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="C"> C. Poseidon</label>
+                    <label class="option-btn"><input type="radio" name="opt2" value="D"> D. Hades</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(3)">Skip ➡</button>
+                <button id="btn-next-2" class="next-btn" disabled onclick="nextQuestion(3)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div id="q3" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">3. What does STEM stand for in the field of education?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt3" value="A"> A. Science, Technology, Engineering, Mathematics</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="B"> B. Social, Technical, Economics, Management</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="C"> C. Studies, Theory, Ethics, Mechanics</label>
+                    <label class="option-btn"><input type="radio" name="opt3" value="D"> D. System, Testing, Evaluation, Method</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(4)">Skip ➡</button>
+                <button id="btn-next-3" class="next-btn" disabled onclick="nextQuestion(4)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 4 -->
+        <div id="q4" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">4. Which gas is primarily responsible for global warming?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt4" value="A"> A. Oxygen</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="B"> B. Nitrogen</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="C"> C. Carbon Dioxide</label>
+                    <label class="option-btn"><input type="radio" name="opt4" value="D"> D. Helium</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(5)">Skip ➡</button>
+                <button id="btn-next-4" class="next-btn" disabled onclick="nextQuestion(5)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 5 -->
+        <div id="q5" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">5. What is the largest land animal in the world?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt5" value="A"> A. Rhinoceros</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="B"> B. African Elephant</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="C"> C. Giraffe</label>
+                    <label class="option-btn"><input type="radio" name="opt5" value="D"> D. Hippopotamus</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(6)">Skip ➡</button>
+                <button id="btn-next-5" class="next-btn" disabled onclick="nextQuestion(6)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 6 -->
+        <div id="q6" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">6. Which bird is capable of flying backwards?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt6" value="A"> A. Hummingbird</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="B"> B. Eagle</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="C"> C. Sparrow</label>
+                    <label class="option-btn"><input type="radio" name="opt6" value="D"> D. Parrot</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(7)">Skip ➡</button>
+                <button id="btn-next-6" class="next-btn" disabled onclick="nextQuestion(7)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 7 -->
+        <div id="q7" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">7. Which HTML tag is used to create an Unordered List?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt7" value="A"> A. &lt;ol&gt;</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="B"> B. &lt;list&gt;</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="C"> C. &lt;ul&gt;</label>
+                    <label class="option-btn"><input type="radio" name="opt7" value="D"> D. &lt;li&gt;</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(8)">Skip ➡</button>
+                <button id="btn-next-7" class="next-btn" disabled onclick="nextQuestion(8)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 8 -->
+        <div id="q8" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">8. Which language is used to style and design web pages?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt8" value="A"> A. Python</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="B"> B. CSS</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="C"> C. C++</label>
+                    <label class="option-btn"><input type="radio" name="opt8" value="D"> D. SQL</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(9)">Skip ➡</button>
+                <button id="btn-next-8" class="next-btn" disabled onclick="nextQuestion(9)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 9 -->
+        <div id="q9" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">9. What do plants use during the process of Photosynthesis?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt9" value="A"> A. Moonlight only</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="B"> B. Sunlight and Carbon Dioxide</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="C"> C. Oxygen only</label>
+                    <label class="option-btn"><input type="radio" name="opt9" value="D"> D. Nitrogen only</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(10)">Skip ➡</button>
+                <button id="btn-next-9" class="next-btn" disabled onclick="nextQuestion(10)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- QUESTION 10 (LAST QUESTION OF LEVEL 1) -->
+        <div id="q10" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">10. Which keyword is used to declare a variable in JavaScript?</div>
+                <div class="options-list">
+                    <label class="option-btn"><input type="radio" name="opt10" value="A"> A. var / let</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="B"> B. integer</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="C"> C. define</label>
+                    <label class="option-btn"><input type="radio" name="opt10" value="D"> D. float</label>
+                </div>
+            </div>
+
+            <!-- LAST PAGE: GO TO LEVEL 2 FILE -->
+            <div class="btn-container">
+                <button class="skip-btn" onclick="goToLevel2()">Skip ➡</button>
+                <button id="btn-next-10" class="next-btn" disabled onclick="goToLevel2()">Go to Level 2 ➡</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        // Selection Highlight & Enable Next Button
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const parentList = this.parentElement;
+                parentList.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const radio = this.querySelector('input[type="radio"]');
+                if(radio) radio.checked = true;
+
+                const currentNextBtn = document.getElementById('btn-next-' + currentQuestion);
+                if (currentNextBtn) {
+                    currentNextBtn.disabled = false;
+                }
+            });
+        });
+
+        function showQuestion(qNum) {
+            document.querySelectorAll('.q-page').forEach(page => page.classList.remove('active'));
+            document.getElementById('q' + qNum).classList.add('active');
+            currentQuestion = qNum;
+
+            const backBtn = document.getElementById('global-back-btn');
+            if (currentQuestion > 1) {
+                backBtn.style.visibility = 'visible';
+            } else {
+                backBtn.style.visibility = 'hidden';
+            }
+        }
+
+        function nextQuestion(nextQ) {
+            showQuestion(nextQ);
+        }
+
+        function skipQuestion(nextQ) {
+            showQuestion(nextQ);
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        // Redirects directly to GKlevel2.html
+        function goToLevel2() {
+            window.location.href = "GKlevel2.html";
+        }
+    </script>
+</html/>
+   </body>     
