@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educational Premium Login</title>
-    <!-- Poppins Font Google Link Added -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -17,31 +20,34 @@
 
         body {
             background: radial-gradient(circle at center, #151515 0%, #050505 100%);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            padding: 20px;
         }
 
         /* Premium Floating Card */
         .card-container {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(127, 0, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(127, 0, 255, 0.25);
             backdrop-filter: blur(20px);
-            padding: 40px;
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 30px;
             border-radius: 24px;
-            width: 380px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 390px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             text-align: center;
             position: relative;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease-in-out;
         }
 
-        /* Upper Premium Header */
+        /* Header */
         .brand-header {
             color: #7f00ff;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -50,12 +56,12 @@
         }
 
         .input-group {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         label {
-            color: #888;
+            color: #aaa;
             font-size: 11px;
             display: block;
             margin-bottom: 8px;
@@ -68,7 +74,7 @@
             width: 100%;
             padding: 14px 16px;
             background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             outline: none;
             color: #fff;
             border-radius: 12px;
@@ -78,10 +84,10 @@
 
         input:focus {
             border-color: #7f00ff;
-            box-shadow: 0 0 15px rgba(127, 0, 255, 0.3);
+            box-shadow: 0 0 15px rgba(127, 0, 255, 0.35);
         }
 
-        /* Send OTP Button */
+        /* Action Button */
         .btn {
             width: 100%;
             padding: 15px;
@@ -103,12 +109,27 @@
             box-shadow: 0 12px 30px rgba(127, 0, 255, 0.5);
         }
 
+        .secondary-btn {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+
+        .secondary-btn:hover {
+            color: #a040ff;
+        }
+
         /* Hidden Sections */
         .hidden {
             display: none !important;
         }
 
-        /* Premium Spinner Animation */
+        /* Spinner Animation */
         .spinner {
             width: 55px;
             height: 55px;
@@ -125,19 +146,19 @@
 
         .waiting-text {
             color: #aaa;
-            font-size: 15px;
+            font-size: 14px;
             margin-top: 15px;
             letter-spacing: 0.5px;
         }
 
         .otp-display {
-            background: rgba(127, 0, 255, 0.1);
+            background: rgba(127, 0, 255, 0.12);
             padding: 12px;
             border-radius: 10px;
-            color: #a040ff;
+            color: #b866ff;
             font-family: monospace;
-            font-size: 19px;
-            letter-spacing: 3px;
+            font-size: 18px;
+            letter-spacing: 2px;
             margin: 20px 0;
             border: 1px dashed rgba(127, 0, 255, 0.4);
         }
@@ -151,16 +172,16 @@
         
         <form id="loginForm" onsubmit="handleLogin(event)">
             <div class="input-group">
-                <label>Username</label>
-                <input type="text" id="username" placeholder="Enter Username" required>
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter Username" required autocomplete="username">
             </div>
             <div class="input-group">
-                <label>User ID</label>
+                <label for="userId">User ID</label>
                 <input type="text" id="userId" placeholder="Enter User ID" required>
             </div>
             <div class="input-group">
-                <label>User Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
+                <label for="password">User Password</label>
+                <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
             </div>
             <button type="submit" class="btn">Send OTP</button>
         </form>
@@ -178,15 +199,27 @@
         <div class="brand-header">EDUCATIONAL</div>
         
         <!-- Generated OTP Display -->
-        <div class="otp-display">YOUR OTP IS: <span id="mockOtp">0000</span></div>
+        <div class="otp-display">YOUR OTP IS: <strong id="mockOtp">0000</strong></div>
 
         <form id="otpForm" onsubmit="handleOtpSubmit(event)">
             <div class="input-group">
-                <label>Enter Secure OTP</label>
-                <input type="text" id="otpInput" maxlength="4" placeholder="••••" required style="text-align: center; font-size: 22px; letter-spacing: 8px;">
+                <label for="otpInput">Enter Secure OTP</label>
+                <input 
+                    type="text" 
+                    id="otpInput" 
+                    maxlength="4" 
+                    pattern="[0-9]*" 
+                    inputmode="numeric" 
+                    placeholder="••••" 
+                    required 
+                    autocomplete="one-time-code"
+                    style="text-align: center; font-size: 22px; letter-spacing: 8px;"
+                >
             </div>
             <button type="submit" class="btn">Verify & Proceed</button>
         </form>
+        
+        <button class="secondary-btn" onclick="resetToLogin()">← Back to Login</button>
     </div>
 
     <script>
@@ -204,7 +237,12 @@
 
                 document.getElementById('waitingCard').classList.add('hidden');
                 document.getElementById('otpCard').classList.remove('hidden');
-            }, 2500); 
+                
+                // Switch focus directly to the OTP input field
+                const otpInput = document.getElementById('otpInput');
+                otpInput.value = "";
+                otpInput.focus();
+            }, 2200); 
         }
 
         function handleOtpSubmit(event) {
@@ -212,13 +250,18 @@
             const otpInput = document.getElementById('otpInput');
 
             if (otpInput.value === correctOtp) {
-                // OTP सही होने पर मुख्य पेज index.html पर रीडायरेक्ट करेगा
                 window.location.href = "index.html";
             } else {
                 alert("गलत OTP! कृपया फिर से सही कोड दर्ज करें।");
-                otpInput.value = ""; // गलत OTP होने पर इनपुट बॉक्स खाली हो जाएगा
+                otpInput.value = ""; 
                 otpInput.focus();
             }
+        }
+
+        function resetToLogin() {
+            document.getElementById('otpCard').classList.add('hidden');
+            document.getElementById('waitingCard').classList.add('hidden');
+            document.getElementById('loginCard').classList.remove('hidden');
         }
     </script>
 </body>
