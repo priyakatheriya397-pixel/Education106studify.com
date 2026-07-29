@@ -3,222 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Premium Login</title>
+    <title>Educational Login</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
-
         body {
-            background: radial-gradient(circle at center, #151515 0%, #050505 100%);
-            height: 100vh;
+            background-color: #0b0b0d;
+            color: #ffffff;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            overflow: hidden;
+            justify-content: center;
+            padding: 20px;
         }
-
-        /* Premium Floating Card */
-        .card-container {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(127, 0, 255, 0.2);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 24px;
-            width: 380px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        .login-card {
+            background: #13131a;
+            border: 2px solid #221a35;
+            border-radius: 20px;
+            padding: 35px 25px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             text-align: center;
-            position: relative;
-            transition: all 0.5s ease;
         }
-
-        /* Upper Premium Header */
-        .brand-header {
-            color: #7f00ff;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 3px;
+        .title {
+            color: #a855f7; /* Neon Purple */
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            margin-bottom: 25px;
-            text-shadow: 0 0 20px rgba(127, 0, 255, 0.6);
         }
-
         .input-group {
-            margin-bottom: 22px;
             text-align: left;
+            margin-bottom: 20px;
         }
-
-        label {
-            color: #888;
-            font-size: 11px;
+        .input-group label {
             display: block;
-            margin-bottom: 8px;
+            font-size: 0.75rem;
+            color: #6b7280;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            outline: none;
-            color: #fff;
-            border-radius: 12px;
-            font-size: 15px;
-            transition: 0.3s ease;
-        }
-
-        input:focus {
-            border-color: #7f00ff;
-            box-shadow: 0 0 15px rgba(127, 0, 255, 0.3);
-        }
-
-        /* Send OTP Button */
-        .btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #6200ea 0%, #7f00ff 100%);
-            border: none;
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 8px 25px rgba(127, 0, 255, 0.3);
-            margin-top: 10px;
             letter-spacing: 1px;
+            margin-bottom: 8px;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(127, 0, 255, 0.5);
-        }
-
-        /* Hidden Sections */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Premium Spinner Animation */
-        .spinner {
-            width: 55px;
-            height: 55px;
-            border: 3px solid rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            border-top-color: #7f00ff;
-            animation: spin 1s linear infinite;
-            margin: 30px auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .waiting-text {
-            color: #aaa;
-            font-size: 15px;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .otp-display {
-            background: rgba(127, 0, 255, 0.1);
-            padding: 12px;
+        .input-group input {
+            width: 100%;
+            background: #09090b;
+            border: 1px solid #27272a;
             border-radius: 10px;
-            color: #a040ff;
-            font-family: monospace;
-            font-size: 19px;
-            letter-spacing: 3px;
-            margin: 20px 0;
-            border: 1px dashed rgba(127, 0, 255, 0.4);
+            padding: 12px 15px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #a855f7;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #6d28d9; /* Deep Purple */
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. LOGIN SCREEN -->
-    <div class="card-container" id="loginCard">
-        <div class="brand-header">EDUCATIONAL</div>
+    <div class="login-card">
+        <div class="title">Educational</div>
         
-        <form id="loginForm" onsubmit="handleLogin(event)">
-            <div class="input-group">
-                <label>Username</label>
-                <input type="text" id="username" placeholder="Enter Username" required>
-            </div>
-            <div class="input-group">
-                <label>User ID</label>
-                <input type="text" id="userId" placeholder="Enter User ID" required>
-            </div>
-            <div class="input-group">
-                <label>User Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
-            <button type="submit" class="btn">Send OTP</button>
-        </form>
-    </div>
+        <!-- Username Input -->
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Enter Username" required>
+        </div>
 
-    <!-- 2. WAITING SCREEN -->
-    <div class="card-container hidden" id="waitingCard">
-        <div class="brand-header">EDUCATIONAL</div>
-        <div class="spinner"></div>
-        <p class="waiting-text">Please wait... Generating Secure OTP</p>
-    </div>
+        <!-- User ID Input -->
+        <div class="input-group">
+            <label>User ID</label>
+            <input type="text" placeholder="Enter User ID">
+        </div>
 
-    <!-- 3. OTP SCREEN -->
-    <div class="card-container hidden" id="otpCard">
-        <div class="brand-header">EDUCATIONAL</div>
-        
-        <!-- Generated OTP Display -->
-        <div class="otp-display">YOUR OTP IS: <span id="mockOtp">0000</span></div>
+        <!-- Password Input -->
+        <div class="input-group">
+            <label>User Password</label>
+            <input type="password" placeholder="••••••••">
+        </div>
 
-        <form id="otpForm" onsubmit="handleOtpSubmit(event)">
-            <div class="input-group">
-                <label>Enter Secure OTP</label>
-                <input type="text" id="otpInput" maxlength="4" placeholder="••••" required style="text-align: center; font-size: 22px; letter-spacing: 8px;">
-            </div>
-            <button type="submit" class="btn">Verify & Proceed</button>
-        </form>
+        <!-- यह बटन यूजर को सीधे menu.html पर ले जाएगा और नाम भी याद रखेगा -->
+        <button class="submit-btn" onclick="loginAndRedirect()">Send OTP</button>
     </div>
 
     <script>
-        let correctOtp = "";
-
-        function handleLogin(event) {
-            event.preventDefault(); // फॉर्म को रीलोड होने से रोकने के लिए
-            
-            // लॉगिन छुपाएं और वेटिंग बॉक्स दिखाएं
-            document.getElementById('loginCard').classList.add('hidden');
-            document.getElementById('waitingCard').classList.remove('hidden');
-
-            // 2.5 सेकंड का वेटिंग टाइम (एनीमेशन के लिए) उसके बाद OTP आएगा
-            setTimeout(() => {
-                // 4 अंकों का ऑटोमैटिक OTP जनरेट करें
-                correctOtp = Math.floor(1000 + Math.random() * 9000).toString();
-                document.getElementById('mockOtp').innerText = correctOtp;
-
-                // वेटिंग बॉक्स छुपाएं और OTP स्क्रीन खोलें
-                document.getElementById('waitingCard').classList.add('hidden');
-                document.getElementById('otpCard').classList.remove('hidden');
-            }, 2500); 
-        }
-
-        function handleOtpSubmit(event) {
-            event.preventDefault();
-            const userOtp = document.getElementById('otpInput').value;
-
-            if (userOtp === correctOtp) {
-                // सफल होने पर सीधे index.html मुख्य पेज पर भेजें
-                window.location.href = "index.html";
+        function loginAndRedirect() {
+            // यूजर का नाम लोकल मेमोरी में सेव करना (ताकि सर्टिफिकेट पर दिख सके)
+            var userNameInput = document.getElementById("username").value;
+            if(userNameInput.trim() !== "") {
+                localStorage.setItem("userRegisteredName", userNameInput);
             } else {
-                alert("गलत OTP! कृपया फिर से सही कोड दर्ज करें।");
+                localStorage.setItem("userRegisteredName", "Student");
             }
+            
+            // सीधे अगले पेज menu.html पर भेजने का कोड
+            window.location.href = "menu.html";
         }
     </script>
+
 </body>
 </html>
