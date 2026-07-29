@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studyfy Premium | Educational Portal</title>
-    <!-- Google Fonts link fixed to load Poppins correctly -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Google Fonts link fixed -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -27,7 +27,7 @@
         body {
             background-color: var(--dark-bg);
             color: #fff;
-            overflow: hidden; /* Screen par extra scrollbar hatane ke liye */
+            overflow-x: hidden;
         }
 
         /* Premium Sticky Navbar */
@@ -90,11 +90,11 @@
             color: white !important;
         }
 
-        /* Hero Section Setup - Text Content centered perfectly */
+        /* Hero Section Setup */
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh; 
+            min-height: 100vh; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -218,7 +218,7 @@
                 <a href="explore.html" class="btn btn-secondary">Explore</a>
             </div>
         </div>
-    
+    </section>
 
 </body>
 </html>
