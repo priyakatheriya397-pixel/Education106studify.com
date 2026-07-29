@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Space Hub | Studyfy</title>
-    <!-- Google Fonts link fixed to load Orbitron and Poppins correctly -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Google Fonts (Orbitron & Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -23,13 +27,13 @@
             position: relative;
         }
 
-        /* Moving Cyber Space Dust Background */
+        /* Animated Space Background */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
-                radial-gradient(rgba(255,255,255,0.4) 1px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 40px),
                 radial-gradient(rgba(6, 182, 212, 0.4) 2px, transparent 60px);
             background-size: 250px 250px, 400px 400px;
             opacity: 0.6;
@@ -42,22 +46,22 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* Top Bar Container */
+        /* Header Navigation */
         .hub-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 6%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
+            padding: 20px 6%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
             position: relative;
             z-index: 10;
         }
 
         .hub-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             letter-spacing: 2px;
             background: linear-gradient(45deg, #06b6d4, #a855f7);
             -webkit-background-clip: text;
@@ -68,19 +72,19 @@
             color: #94a3b8;
             text-decoration: none;
             font-size: 13px;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 18px;
             border-radius: 30px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .back-home-btn:hover {
-            color: #fff;
+            color: #ffffff;
             border-color: #06b6d4;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
         }
 
-        /* Premium Presentation Frame */
+        /* Main Container */
         .presentation-wrapper {
             max-width: 1100px;
             margin: 40px auto;
@@ -89,7 +93,6 @@
             z-index: 5;
         }
 
-        /* Large Luxury Header */
         .main-heading {
             text-align: center;
             margin-bottom: 50px;
@@ -97,7 +100,7 @@
 
         .main-heading h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 38px;
+            font-size: 36px;
             font-weight: 800;
             letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
@@ -110,7 +113,7 @@
             font-weight: 300;
         }
 
-        /* 3D Real Look Grid Layout for Space Cards */
+        /* Cards Grid */
         .space-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -118,34 +121,30 @@
             margin-bottom: 50px;
         }
 
-        /* Luxury Glassmorphism 3D Card Box */
+        /* Space Card Frame */
         .space-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.3) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
         }
 
         .space-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(6, 182, 212, 0.4);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15), 0 0 30px rgba(168, 85, 247, 0.1);
+            transform: translateY(-8px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2), 0 0 30px rgba(168, 85, 247, 0.15);
         }
 
-        /* Luxury Real Space High-Quality Visual Frames */
         .image-frame {
             width: 100%;
             height: 200px;
             position: relative;
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Dynamic Neon Glow Line under Images */
         .image-frame::after {
             content: "";
             position: absolute;
@@ -162,7 +161,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 11px;
             color: #06b6d4;
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 8px;
@@ -183,16 +182,16 @@
             font-weight: 300;
         }
 
-        /* Lower Interactive Action Bar Layout */
+        /* Footer Action Button */
         .footer-action {
             text-align: center;
-            padding: 40px 0;
+            padding: 20px 0 50px;
         }
 
         .btn-finish-hub {
             display: inline-block;
             font-family: 'Orbitron', sans-serif;
-            padding: 15px 40px;
+            padding: 16px 42px;
             background: linear-gradient(90deg, #06b6d4, #a855f7);
             color: #ffffff;
             font-weight: 800;
@@ -201,75 +200,72 @@
             letter-spacing: 1.5px;
             font-size: 14px;
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .btn-finish-hub:hover {
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
-            transform: scale(1.03);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
+            transform: scale(1.04);
         }
     </style>
 </head>
 <body>
 
-    <!-- Upper Luxury Dashboard Navigation Header Layout -->
-    <div class="hub-header">
+    <!-- Header Navigation -->
+    <header class="hub-header">
         <div class="hub-title">STUDYFY // ARCHIVE</div>
         <a href="index.html" class="back-home-btn">← Terminate Session</a>
-    </div>
+    </header>
 
-    <!-- Main Presentation Container Block -->
-    <div class="presentation-wrapper">
+    <!-- Main Content Wrapper -->
+    <main class="presentation-wrapper">
         
-        <div class="main-heading">
+        <section class="main-heading">
             <h1>COSMIC INTELLIGENCE</h1>
             <p>Accessing premium 3D deep space exploration files and learning modules</p>
-        </div>
+        </section>
 
-        <!-- 3D Luxury Presentation Cards Grid Layout -->
-        <div class="space-grid">
+        <!-- Cards Grid Structure -->
+        <section class="space-grid">
             
-            <!-- Module 1 Card (Nebula Archive) -->
-            <div class="space-card">
-                <!-- Fixed Image URL with High-Quality Space Background -->
-                <div class="image-frame" style="background-image: url('https://unsplash.com');"></div>
+            <!-- Module 1 -->
+            <article class="space-card">
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <span class="card-tag">File // 01</span>
                     <h3>The Deep Nebula</h3>
-                    <p>Interstellar clouds of cosmic dust, hydrogen, helium and other ionized gases where new stellar systems are born across millions of light-years.</p>
+                    <p>Interstellar clouds of cosmic dust, hydrogen, helium, and other ionized gases where new stellar systems are born across millions of light-years.</p>
                 </div>
-            </div>
+            </article>
 
-            <!-- Module 2 Card (Quantum Wormholes) -->
-            <div class="space-card">
-                <!-- Fixed Image URL with High-Quality Cosmic Tunnel Background -->
-                <div class="image-frame" style="background-image: url('https://unsplash.com');"></div>
+            <!-- Module 2 -->
+            <article class="space-card">
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <span class="card-tag">File // 02</span>
                     <h3>Wormhole Mechanics</h3>
-                    <p>A hypothetical luxury shortcut through space-time topological features that could create tunnels linking distant areas of the universe instantly.</p>
+                    <p>A hypothetical shortcut through space-time topological features that could create tunnels linking distant areas of the universe instantly.</p>
                 </div>
-            </div>
+            </article>
 
-            <!-- Module 3 Card (Exoplanet Exploration) -->
-            <div class="space-card">
-                <!-- Fixed Image URL with High-Quality Exoplanet Orbit Background -->
-                <div class="image-frame" style="background-image: url('https://unsplash.com');"></div>
+            <!-- Module 3 -->
+            <article class="space-card">
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <span class="card-tag">File // 03</span>
                     <h3>Habitable Exoplanets</h3>
                     <p>Analyzing advanced atmospheric compositions, biosignatures, and goldilocks zone vectors of newly discovered planets beyond our solar horizon.</p>
                 </div>
-            </div>
+            </article>
 
-        </div>
+        </section>
 
-        <!-- Footer Control Action -->
+        <!-- Action Area -->
         <div class="footer-action">
             <a href="index.html" class="btn-finish-hub">COMPLETE CORE MODULE</a>
         </div>
 
-    </div>
+    </main>
 
 </body>
 </html>
