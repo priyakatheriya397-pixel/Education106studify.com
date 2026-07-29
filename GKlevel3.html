@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Quiz App - Level 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffd700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .back-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .quiz-card {
+            background-color: #0d1b2a;
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .question-box {
+            background: linear-gradient(180deg, #ffe033 0%, #ffd700 100%);
+            color: #0d1b2a;
+            padding: 18px 15px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #ffffff;
+            line-height: 1.4;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .input-container label {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .blank-input {
+            width: 100%;
+            background: #111111;
+            border: 2px solid #ffd700;
+            color: #ffffff;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .blank-input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 10px #ffd700;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .skip-btn {
+            background: #111111;
+            color: #ffd700;
+            border: 2px solid #b8860b;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .next-btn {
+            background: linear-gradient(180deg, #ffe033 0%, #b8860b 100%);
+            color: #000000;
+            border: 2px solid #ffffff;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            flex-grow: 1;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .q-page {
+            display: none;
+        }
+
+        .q-page.active {
+            display: block;
+        }
+
+        /* Certificate Styling */
+        #cert-section {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cursive-header {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff3366;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+        }
+
+        .cursive-footer {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #00e676;
+            margin-top: 15px;
+            text-shadow: 0 0 5px rgba(0, 230, 118, 0.5);
+        }
+
+        .certificate {
+            padding: 30px 20px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Certificate Themes */
+        .cert-gold {
+            background: linear-gradient(135deg, #1a1a1a 0%, #332600 50%, #1a1a1a 100%);
+            border: 10px solid #ffd700;
+            color: #ffd700;
+        }
+
+        .cert-silver {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            border: 10px solid #c0c0c0;
+            color: #c0c0c0;
+        }
+
+        .cert-bronze {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2b1704 50%, #1a1a1a 100%);
+            border: 10px solid #cd7f32;
+            color: #cd7f32;
+        }
+
+        .cert-bad {
+            background: #222222;
+            border: 4px dashed #555555;
+            color: #888888;
+        }
+
+        .cert-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .cert-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            text-decoration: underline;
+        }
+
+        .cert-score {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-nav">
+            <button id="global-back-btn" class="back-btn" onclick="prevQuestion()" style="visibility: hidden;">⬅ Back</button>
+            <span style="font-weight: bold; font-size: 0.9rem;">Golden Level 3</span>
+        </div>
+
+        <h1 class="main-title" id="main-header">GOLDEN LEVEL 3</h1>
+
+        <!-- ================= 20 FILL IN THE BLANKS QUESTIONS ================= -->
+
+        <!-- Q1 -->
+        <div id="q1" class="q-page active">
+            <div class="quiz-card">
+                <div class="question-box">1. [Coding] What is the worst-case space complexity of a recursive Fibonacci algorithm without memoization?</div>
+                <div class="input-container">
+                    <label>Type Big-O notation (e.g. O(n)):</label>
+                    <input type="text" id="ans1" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(2)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(2)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div id="q2" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">2. [Coding] Name the design pattern that ensures a class has only one instance and provides global access to it.</div>
+                <div class="input-container">
+                    <label>Type Pattern Name:</label>
+                    <input type="text" id="ans2" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(3)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(3)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div id="q3" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">3. [Coding] Which HTTP status code represents "Internal Server Error"?</div>
+                <div class="input-container">
+                    <label>Type Status Code Number:</label>
+                    <input type="text" id="ans3" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(4)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(4)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div id="q4" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">4. [Coding] What is the main algorithm used by Git to calculate commit hashes?</div>
+                <div class="input-container">
+                    <label>Type Algorithm Name (e.g., SHA-1):</label>
+                    <input type="text" id="ans4" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(5)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(5)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div id="q5" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">5. [Coding] In C, which function is used to dynamically allocate contiguous memory blocks initialized to zero?</div>
+                <div class="input-container">
+                    <label>Type Function Name:</label>
+                    <input type="text" id="ans5" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(6)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(6)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div id="q6" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">6. [Coding] Which Linux command is used to change file permissions?</div>
+                <div class="input-container">
+                    <label>Type Command:</label>
+                    <input type="text" id="ans6" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(7)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(7)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div id="q7" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">7. [Coding] What parameter is used in SQL to prevent SQL Injection attacks?</div>
+                <div class="input-container">
+                    <label>Type Concept Name (Prepared ________):</label>
+                    <input type="text" id="ans7" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(8)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(8)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div id="q8" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">8. [Coding] In Python, what magic method is called when an object is initialized?</div>
+                <div class="input-container">
+                    <label>Type Method Name (e.g. __init__):</label>
+                    <input type="text" id="ans8" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(9)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(9)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div id="q9" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">9. [Coding] Which data structure is utilized in Dijkstra's Algorithm for minimum distance extraction?</div>
+                <div class="input-container">
+                    <label>Type Data Structure Name:</label>
+                    <input type="text" id="ans9" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(10)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(10)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div id="q10" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">10. [Coding] In Java, which keyword prevents a method from being overridden by subclasses?</div>
+                <div class="input-container">
+                    <label>Type Keyword:</label>
+                    <input type="text" id="ans10" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(11)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(11)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div id="q11" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">11. [Physics 12th] What is the S.I. unit of Magnetic Flux?</div>
+                <div class="input-container">
+                    <label>Type Unit Name:</label>
+                    <input type="text" id="ans11" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(12)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(12)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q12 -->
+        <div id="q12" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">12. [Chemistry 12th] What product is formed when Phenol reacts with Zinc dust?</div>
+                <div class="input-container">
+                    <label>Type Compound Name:</label>
+                    <input type="text" id="ans12" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(13)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(13)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q13 -->
+        <div id="q13" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">13. [Maths 11th] What is the value of i^4 (where i = √-1)?</div>
+                <div class="input-container">
+                    <label>Type Value:</label>
+                    <input type="text" id="ans13" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(14)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(14)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q14 -->
+        <div id="q14" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">14. [Biology 12th] Name the functional unit of human kidney.</div>
+                <div class="input-container">
+                    <label>Type Name:</label>
+                    <input type="text" id="ans14" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(15)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(15)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q15 -->
+        <div id="q15" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">15. [Physics 11th] What is the dimension formula of Work?</div>
+                <div class="input-container">
+                    <label>Type Dimensional Formula (e.g. ML2T-2):</label>
+                    <input type="text" id="ans15" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(16)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(16)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q16 -->
+        <div id="q16" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">16. [Chemistry 11th] What is the pH value of pure distilled water at 25°C?</div>
+                <div class="input-container">
+                    <label>Type Number:</label>
+                    <input type="text" id="ans16" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(17)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(17)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q17 -->
+        <div id="q17" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">17. [Maths 12th] What is the integration of 1/x dx?</div>
+                <div class="input-container">
+                    <label>Type Expression (e.g., log x):</label>
+                    <input type="text" id="ans17" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(18)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(18)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q18 -->
+        <div id="q18" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">18. [Physics 12th] Which principle states that light travels along the path that takes the shortest time?</div>
+                <div class="input-container">
+                    <label>Type Principle Name:</label>
+                    <input type="text" id="ans18" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onclick="skipQuestion(19)">Skip ➡</button>
+                <button class="next-btn" onclick="nextQuestion(19)">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Q19 -->
+        <div id="q19" class="q-page">
+            <div class="quiz-card">
+                <div class="question-box">19. [Chemistry 12th] What is the coordination number of an atom in a Face-Centered Cubic (FCC) lattice?</div>
+                <div class="input-container">
+                    <label>Type Number:</label>
+                    <input type="text" id="ans19" class="blank-input" placeholder="Your Answer...">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="skip-btn" onc
