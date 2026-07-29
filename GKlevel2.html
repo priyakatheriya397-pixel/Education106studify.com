@@ -126,6 +126,7 @@
             margin-right: 15px;
             position: relative;
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         .option-btn input[type="radio"]:checked::before {
@@ -397,7 +398,6 @@
                 </div>
             </div>
 
-            <!-- BUTTON CHANGED HERE TO GO TO LEVEL 3 -->
             <div class="btn-container">
                 <button class="skip-btn" onclick="goToLevel3()">Skip ➡</button>
                 <button id="btn-next-10" class="next-btn" disabled onclick="goToLevel3()">Go to Level 3 ➡</button>
@@ -417,7 +417,7 @@
                 this.classList.add('selected');
                 
                 const radio = this.querySelector('input[type="radio"]');
-                if(radio) radio.checked = true;
+                if (radio) radio.checked = true;
 
                 const currentNextBtn = document.getElementById('btn-next-' + currentQuestion);
                 if (currentNextBtn) {
@@ -428,7 +428,10 @@
 
         function showQuestion(qNum) {
             document.querySelectorAll('.q-page').forEach(page => page.classList.remove('active'));
-            document.getElementById('q' + qNum).classList.add('active');
+            const activePage = document.getElementById('q' + qNum);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
             currentQuestion = qNum;
 
             const backBtn = document.getElementById('global-back-btn');
