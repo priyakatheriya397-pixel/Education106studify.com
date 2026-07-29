@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Study - Learning Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f2027;
+            color: #ffffff;
+            margin: 0;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Banner wrapper block */
+        .banner-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .cursive-content {
+            font-family: 'Comic Sans MS', 'Apple Chancery', 'Lucida Handwriting', cursive;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            color: #e0e0e0;
+        }
+        h1, h2 {
+            font-family: 'Segoe UI', sans-serif;
+            color: #00d2ff;
+            border-bottom: 2px solid rgba(0, 210, 255, 0.3);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h1 { margin-top: 0; font-size: 2.2rem; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .highlight { color: #ffeb3b; font-weight: bold; }
+
+        /* New GK Test Button CSS Styling */
+        .btn-gk-test {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 16px 32px;
+            background: linear-gradient(45deg, #7f00ff, #ff007f);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(127, 0, 255, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-gk-test:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 0, 127, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- LIVE TALL NEON BANNER (Width 300, Height 780) -->
+        <div class="banner-container">
+            <svg width="300" height="780" viewBox="0 0 300 780" style="background:#0a192f; border-radius:12px; border:2px solid #00d2ff; box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);">
+                <defs>
+                    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="5" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <!-- Full Height Cyber Grid Lines -->
+                <path d="M0 100 H300 M0 200 H300 M0 300 H300 M0 400 H300 M0 500 H300 M0 600 H300 M0 700 H300 M75 0 V780 M150 0 V780 M225 0 V780" stroke="#102a45" stroke-width="1"/>
+                
+                <!-- Top Decorative Code -->
+                <text x="25" y="40" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">import dev_hub;</text>
+                <text x="210" y="70" font-family="monospace" font-size="11" fill="#ff007f" opacity="0.6">&lt;main&gt;</text>
+
+                <!-- Center Main Glowing Neon Graphics (Stacked Vertically) -->
+                <text x="50%" y="320" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="bold" fill="#00d2ff" text-anchor="middle" filter="url(#neon-glow)">&lt; CODE &gt;</text>
+                <text x="50%" y="360" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="bold" fill="#00d2ff" text-anchor="middle" filter="url(#neon-glow)">&lt; STUDY &gt;</text>
+                <text x="50%" y="410" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ff007f" text-anchor="middle" filter="url(#neon-glow)">WEB DEVELOPMENT HUB</text>
+                
+                <!-- Glowing Accent Shapes in the Center -->
+                <circle cx="150" cy="480" r="10" stroke="#ffaa00" stroke-width="2" fill="none" filter="url(#neon-glow)"/>
+                <line x1="100" y1="520" x2="200" y2="520" stroke="#00e676" stroke-width="2" filter="url(#neon-glow)"/>
+
+                <!-- Bottom Decorative Code & Status -->
+                <text x="30" y="680" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">while (true) {</text>
+                <text x="50" y="710" font-family="monospace" font-size="11" fill="#ffaa00" opacity="0.6">keep_learning();</text>
+                <text x="30" y="740" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">}</text>
+            </svg>
+        </div>
+
+        <!-- Cursive Definitions Content -->
+        <div class="cursive-content">
+            <h1>What is Coding? (Extended Definition)</h1>
+            <p>Coding, often referred to as computer programming, is the technical process of designing and building an executable computer program to accomplish a specific computing result or to perform a specific task. It involves writing instructions in specialized programming languages such as Python, JavaScript, C++, or HTML. These languages act as a medium of communication between human logic and electronic hardware, converting abstract problem-solving concepts into binary code that microprocessors can instantly compute, execute, and display on user screens worldwide.</p>
+
+            <h2>How to Study Coding Efficiently</h2>
+            <p>Learning to code requires a systematic approach rather than just reading theory. A student must focus on the core principles of computation, which include logical thinking, understanding complex system architectures, and algorithmic problem-solving. True knowledge comes from debugging and reading raw errors rather than just copying tutorials. You must build custom sandboxes, run local scripts daily, and understand how front-end markup interacts with server-side processing layers.</p>
+
+            <h2>Your Strategic Daily Routine</h2>
+            <ul>
+                <li><span class="highlight">07:00 AM - 08:30 AM</span>: Morning Logic Building — Practice data structures and basic logical algorithms on platforms like LeetCode or HackerRank while your mind is completely fresh.</li>
+                <li><span class="highlight">10:00 AM - 01:00 PM</span>: Core Development Blocks — Dedicate this solid timeframe to writing fresh HTML, CSS layout rules, and integrating scripting languages like JavaScript.</li>
+                <li><span class="highlight">03:00 PM - 05:00 PM</span>: Project Architecture — Work entirely on your independent web builds, structuring files properly, and fixing broken page elements.</li>
+                <li><span class="highlight">07:00 PM - 08:30 PM</span>: Review & Document — Read open-source code documentation, analyze expert design structures, and write clean notes regarding your daily errors and bug solutions.</li>
+            </ul>
+
+            <h2>Key Coding Pillars</h2>
+            <p>Every software system stands on three fundamental components: Data structures which organize information securely inside a system memory, control flows which dictate conditions and decision-making logic patterns, and input-output operations which let external users interact seamlessly with back-end databases.</p>
+            
+            <!-- NEW GK QUIZ BUTTON (Connected to GKlevel1.html) -->
+            <div style="text-align: center;">
+                <a href="GKlevel1.html" class="btn-gk-test">📝 GK QUESTION TEST LEVEL & TAKE YOUR CERTIFICATE</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
