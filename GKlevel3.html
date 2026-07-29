@@ -56,6 +56,12 @@
             font-weight: bold;
             border-radius: 20px;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #ffd700;
+            color: #000000;
         }
 
         .quiz-card {
@@ -126,6 +132,11 @@
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skip-btn:hover {
+            background: #222222;
         }
 
         .next-btn {
@@ -140,6 +151,12 @@
             text-transform: uppercase;
             flex-grow: 1;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
 
         .q-page {
@@ -178,9 +195,9 @@
             border-radius: 15px;
             position: relative;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            margin-bottom: 20px;
         }
 
-        /* Certificate Themes */
         .cert-gold {
             background: linear-gradient(135deg, #1a1a1a 0%, #332600 50%, #1a1a1a 100%);
             border: 10px solid #ffd700;
@@ -224,14 +241,27 @@
             margin-bottom: 20px;
             color: #ffffff;
         }
+
+        .restart-btn {
+            background: linear-gradient(180deg, #ffe033 0%, #b8860b 100%);
+            color: #000000;
+            border: 2px solid #ffffff;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="top-nav">
+        <div class="top-nav" id="quiz-nav">
             <button id="global-back-btn" class="back-btn" onclick="prevQuestion()" style="visibility: hidden;">⬅ Back</button>
-            <span style="font-weight: bold; font-size: 0.9rem;">Golden Level 3</span>
+            <span id="q-tracker" style="font-weight: bold; font-size: 0.9rem;">Golden Level 3 (1/20)</span>
         </div>
 
         <h1 class="main-title" id="main-header">GOLDEN LEVEL 3</h1>
@@ -499,23 +529,4 @@
                 <div class="question-box">18. [Physics 12th] Which principle states that light travels along the path that takes the shortest time?</div>
                 <div class="input-container">
                     <label>Type Principle Name:</label>
-                    <input type="text" id="ans18" class="blank-input" placeholder="Your Answer...">
-                </div>
-            </div>
-            <div class="btn-container">
-                <button class="skip-btn" onclick="skipQuestion(19)">Skip ➡</button>
-                <button class="next-btn" onclick="nextQuestion(19)">Next Question</button>
-            </div>
-        </div>
-
-        <!-- Q19 -->
-        <div id="q19" class="q-page">
-            <div class="quiz-card">
-                <div class="question-box">19. [Chemistry 12th] What is the coordination number of an atom in a Face-Centered Cubic (FCC) lattice?</div>
-                <div class="input-container">
-                    <label>Type Number:</label>
-                    <input type="text" id="ans19" class="blank-input" placeholder="Your Answer...">
-                </div>
-            </div>
-            <div class="btn-container">
-                <button class="skip-btn" onc
+                    <input type="text" id="ans18" class="blank-input" placeho
