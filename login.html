@@ -22,10 +22,52 @@
             background: radial-gradient(circle at center, #151515 0%, #050505 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 10px;
+        }
+
+        /* Top Connected Navigation Bar */
+        .navbar {
+            display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            padding: 20px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(127, 0, 255, 0.3);
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 650px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            color: #00d2ff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        .nav-link:hover {
+            background: #00d2ff;
+            color: #0f2027;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .nav-link.active {
+            background: #7f00ff;
+            color: #ffffff;
+            border-color: #7f00ff;
+            box-shadow: 0 0 10px rgba(127, 0, 255, 0.5);
         }
 
         /* Premium Floating Card */
@@ -42,6 +84,7 @@
             text-align: center;
             position: relative;
             transition: all 0.4s ease-in-out;
+            margin: auto 0;
         }
 
         /* Header */
@@ -166,6 +209,17 @@
 </head>
 <body>
 
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <a href="login.html" class="nav-link active">Login</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="content.html" class="nav-link">Content</a>
+        <a href="explore.html" class="nav-link">Explore</a>
+        <a href="start-learn.html" class="nav-link">Start Learn</a>
+        <a href="gklevel1.html" class="nav-link">GK Test</a>
+        <a href="certificate.html" class="nav-link">Certificate</a>
+    </nav>
+
     <!-- 1. LOGIN SCREEN -->
     <div class="card-container" id="loginCard">
         <div class="brand-header">EDUCATIONAL</div>
@@ -250,7 +304,8 @@
             const otpInput = document.getElementById('otpInput');
 
             if (otpInput.value === correctOtp) {
-                window.location.href = "index.html";
+                // Successful Login -> Dynamic Redirect to Menu Dashboard
+                window.location.href = "menu.html";
             } else {
                 alert("गलत OTP! कृपया फिर से सही कोड दर्ज करें।");
                 otpInput.value = ""; 
