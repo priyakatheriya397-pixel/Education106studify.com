@@ -22,6 +22,46 @@
             min-height: 100vh;
         }
 
+        /* Top Connected Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .nav-link {
+            color: #00d2ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        .nav-link:hover {
+            background: #00d2ff;
+            color: #0f2027;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .nav-link.active {
+            background: #ffd700;
+            color: #000000;
+            border-color: #ffd700;
+        }
+
         .main-title {
             text-align: center;
             font-size: 2rem;
@@ -135,8 +175,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background-color: #ffd700;
             border-radius: 50%;
         }
@@ -223,6 +263,17 @@
     </style>
 </head>
 <body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Login</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="content.html" class="nav-link">Content</a>
+        <a href="explore.html" class="nav-link">Explore</a>
+        <a href="start-learn.html" class="nav-link">Start Learn</a>
+        <a href="gklevel1.html" class="nav-link active">GK Test</a>
+        <a href="certificate.html" class="nav-link">Certificate</a>
+    </nav>
 
     <div class="container">
         <!-- Top Nav Header -->
@@ -398,9 +449,10 @@
                 </div>
             </div>
 
+            <!-- LAST PAGE: GO TO CERTIFICATE -->
             <div class="btn-container">
-                <button class="skip-btn" onclick="goToLevel3()">Skip ➡</button>
-                <button id="btn-next-10" class="next-btn" disabled onclick="goToLevel3()">Go to Level 3 ➡</button>
+                <button class="skip-btn" onclick="finishQuiz()">Skip ➡</button>
+                <button id="btn-next-10" class="next-btn" disabled onclick="finishQuiz()">Get Certificate 🎓</button>
             </div>
         </div>
 
@@ -453,13 +505,4 @@
         function prevQuestion() {
             if (currentQuestion > 1) {
                 showQuestion(currentQuestion - 1);
-            }
-        }
-
-        // Redirects to Level 3
-        function goToLevel3() {
-            window.location.href = "GKlevel3.html";
-        }
-    </script>
-</body>
-</html>
+        
