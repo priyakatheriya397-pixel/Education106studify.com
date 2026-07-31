@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Modern Website</title>
+    <title>Premium Modern Website - Menu</title>
     <style>
         /* CSS Variables & Global Resets */
         :root {
@@ -32,16 +32,58 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
-        header {
+        /* Top App Navigation Bar */
+        .app-navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
             position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tab {
+            color: #0070f3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            background: #f4f4f5;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0, 112, 243, 0.2);
+        }
+
+        .nav-tab:hover {
+            background: #0070f3;
+            color: #ffffff;
+        }
+
+        .nav-tab.active {
+            background: #7f00ff;
+            color: #ffffff;
+            border-color: #7f00ff;
+            box-shadow: 0 0 10px rgba(127, 0, 255, 0.3);
+        }
+
+        /* Sub Header & Side Menu Hamburger */
+        header {
+            position: fixed;
+            top: 55px;
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            padding: 15px 30px;
+            padding: 12px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -113,7 +155,7 @@
             box-shadow: 4px 0 20px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            padding: 90px 30px 40px;
+            padding: 120px 30px 40px;
             gap: 24px;
             transition: left 0.3s ease;
             z-index: 999;
@@ -138,7 +180,7 @@
         /* Main Content Layout */
         main {
             flex: 1;
-            margin-top: 70px;
+            margin-top: 120px;
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
@@ -192,7 +234,7 @@
             border-radius: 12px;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            scroll-margin-top: 100px;
+            scroll-margin-top: 140px;
         }
 
         .section h2 {
@@ -306,7 +348,18 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Top Connected Portal Nav Bar -->
+    <nav class="app-navbar">
+        <a href="login.html" class="nav-tab">Login</a>
+        <a href="menu.html" class="nav-tab active">Menu</a>
+        <a href="content.html" class="nav-tab">Content</a>
+        <a href="explore.html" class="nav-tab">Explore</a>
+        <a href="start-learn.html" class="nav-tab">Start Learn</a>
+        <a href="gklevel1.html" class="nav-tab">GK Test</a>
+        <a href="certificate.html" class="nav-tab">Certificate</a>
+    </nav>
+
+    <!-- Sub Header -->
     <header>
         <button class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">
             <span></span>
@@ -364,7 +417,7 @@
         <section id="help" class="section">
             <h2>Help Box</h2>
             <p>Need assistance or exploring new features?</p>
-            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-link">Open Secondary Page</a>
+            <a href="content.html" class="btn-link">Open Content Section</a>
         </section>
 
         <!-- Support Section -->
@@ -382,7 +435,7 @@
                 </div>
             </div>
 
-            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="btn-link">Open Space Portal</a>
+            <a href="explore.html" class="btn-link">Open Space Portal</a>
         </section>
     </main>
 
@@ -411,4 +464,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
