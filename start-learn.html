@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Space Hub | Studyfy</title>
+    <title>Gurudwara Sahib | Studyfy</title>
     
-    <!-- Google Fonts (Orbitron & Poppins) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
         }
 
         body {
-            background: radial-gradient(circle at 50% 50%, #030712 0%, #000000 100%);
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
@@ -27,14 +27,14 @@
             position: relative;
         }
 
-        /* Animated Space Background */
+        /* Golden Aura Background Animation */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
-                radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 40px),
-                radial-gradient(rgba(6, 182, 212, 0.4) 2px, transparent 60px);
+                radial-gradient(rgba(245, 158, 11, 0.25) 1px, transparent 40px),
+                radial-gradient(rgba(234, 179, 8, 0.3) 2px, transparent 60px);
             background-size: 250px 250px, 400px 400px;
             opacity: 0.6;
             z-index: 0;
@@ -52,8 +52,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 6%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
             position: relative;
             z-index: 10;
@@ -63,16 +63,17 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 18px;
             letter-spacing: 2px;
-            background: linear-gradient(45deg, #06b6d4, #a855f7);
+            background: linear-gradient(45deg, #f59e0b, #eab308);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
         .back-home-btn {
-            color: #94a3b8;
+            color: #fef08a;
             text-decoration: none;
             font-size: 13px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
             padding: 8px 18px;
             border-radius: 30px;
             transition: all 0.3s ease;
@@ -80,8 +81,8 @@
 
         .back-home-btn:hover {
             color: #ffffff;
-            border-color: #06b6d4;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            border-color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
         }
 
         /* Main Container */
@@ -103,12 +104,13 @@
             font-size: 36px;
             font-weight: 800;
             letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
             margin-bottom: 10px;
         }
 
         .main-heading p {
-            color: #94a3b8;
+            color: #cbd5e1;
             font-size: 15px;
             font-weight: 300;
         }
@@ -121,10 +123,10 @@
             margin-bottom: 50px;
         }
 
-        /* Space Card Frame */
+        /* Card Frame */
         .space-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.4) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.5) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
@@ -133,8 +135,8 @@
 
         .space-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2), 0 0 30px rgba(168, 85, 247, 0.15);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.25);
         }
 
         .image-frame {
@@ -149,8 +151,8 @@
             content: "";
             position: absolute;
             bottom: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, #06b6d4, #a855f7);
-            box-shadow: 0 0 10px #06b6d4;
+            background: linear-gradient(90deg, #f59e0b, #eab308);
+            box-shadow: 0 0 10px #f59e0b;
         }
 
         .card-content {
@@ -160,7 +162,7 @@
         .card-tag {
             font-family: 'Orbitron', sans-serif;
             font-size: 11px;
-            color: #06b6d4;
+            color: #f59e0b;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -192,19 +194,19 @@
             display: inline-block;
             font-family: 'Orbitron', sans-serif;
             padding: 16px 42px;
-            background: linear-gradient(90deg, #06b6d4, #a855f7);
+            background: linear-gradient(90deg, #f59e0b, #d97706);
             color: #ffffff;
             font-weight: 800;
             text-decoration: none;
             border-radius: 50px;
             letter-spacing: 1.5px;
             font-size: 14px;
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
             transition: all 0.3s ease;
         }
 
         .btn-finish-hub:hover {
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.8);
             transform: scale(1.04);
         }
     </style>
@@ -213,16 +215,16 @@
 
     <!-- Header Navigation -->
     <header class="hub-header">
-        <div class="hub-title">STUDYFY // ARCHIVE</div>
-        <a href="index.html" class="back-home-btn">← Terminate Session</a>
+        <div class="hub-title">STUDYFY // GURUDWARA KNOWLEDGE</div>
+        <a href="index.html" class="back-home-btn">← Back to Main Page</a>
     </header>
 
     <!-- Main Content Wrapper -->
     <main class="presentation-wrapper">
         
         <section class="main-heading">
-            <h1>COSMIC INTELLIGENCE</h1>
-            <p>Accessing premium 3D deep space exploration files and learning modules</p>
+            <h1>ੴ GURUDWARA SAHIB ARCHIVE</h1>
+            <p>Explore Sacred Architecture, Community Service, and Spiritual Wisdom</p>
         </section>
 
         <!-- Cards Grid Structure -->
@@ -230,31 +232,31 @@
             
             <!-- Module 1 -->
             <article class="space-card">
-                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
-                    <span class="card-tag">File // 01</span>
-                    <h3>The Deep Nebula</h3>
-                    <p>Interstellar clouds of cosmic dust, hydrogen, helium, and other ionized gases where new stellar systems are born across millions of light-years.</p>
+                    <span class="card-tag">Pillar // 01</span>
+                    <h3>Sri Harmandir Sahib</h3>
+                    <p>Known as the Golden Temple in Amritsar, it stands as the central place of worship for Sikhs worldwide, symbolising equality, brotherhood, and eternal peace.</p>
                 </div>
             </article>
 
             <!-- Module 2 -->
             <article class="space-card">
-                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
-                    <span class="card-tag">File // 02</span>
-                    <h3>Wormhole Mechanics</h3>
-                    <p>A hypothetical shortcut through space-time topological features that could create tunnels linking distant areas of the universe instantly.</p>
+                    <span class="card-tag">Pillar // 02</span>
+                    <h3>Langar (Community Kitchen)</h3>
+                    <p>A sacred tradition where free meals are served to all visitors regardless of religion, caste, gender, or background, preaching total human equality.</p>
                 </div>
             </article>
 
             <!-- Module 3 -->
             <article class="space-card">
-                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?q=80&w=800&auto=format&fit=crop');"></div>
+                <div class="image-frame" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=800&auto=format&fit=crop');"></div>
                 <div class="card-content">
-                    <span class="card-tag">File // 03</span>
-                    <h3>Habitable Exoplanets</h3>
-                    <p>Analyzing advanced atmospheric compositions, biosignatures, and goldilocks zone vectors of newly discovered planets beyond our solar horizon.</p>
+                    <span class="card-tag">Pillar // 03</span>
+                    <h3>Seva & Simran</h3>
+                    <p>The core values of Sikh philosophy — Seva (selfless service to humanity) and Simran (remembrance of the Divine Creator) to guide peaceful living.</p>
                 </div>
             </article>
 
