@@ -86,25 +86,33 @@
 
         /* Call To Action Button Section */
         .cta-wrapper {
-            text-align: center;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-top: 40px;
         }
 
         .btn-gk-test {
             display: inline-block;
-            padding: 16px 32px;
+            padding: 16px 28px;
             background: linear-gradient(45deg, #7f00ff, #ff007f);
             color: #ffffff;
             text-decoration: none;
             font-family: 'Segoe UI', sans-serif;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(127, 0, 255, 0.5);
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-home {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            box-shadow: 0 8px 25px rgba(0, 198, 255, 0.4);
         }
 
         .btn-gk-test:hover {
@@ -172,9 +180,10 @@
             <h2>Key Coding Pillars</h2>
             <p>Every software system stands on three fundamental components: Data structures which organize information securely inside a system memory, control flows which dictate conditions and decision-making logic patterns, and input-output operations which let external users interact seamlessly with back-end databases.</p>
             
-            <!-- GK Quiz Button Action -->
+            <!-- Navigation Buttons -->
             <div class="cta-wrapper">
-                <a href="GKlevel1.html" class="btn-gk-test">📝 GK QUESTION TEST LEVEL & TAKE YOUR CERTIFICATE</a>
+                <a href="index.html" class="btn-gk-test btn-home">🏠 BACK TO HOME</a>
+                <a href="gklevel1.html" class="btn-gk-test">📝 GK QUESTION TEST LEVEL</a>
             </div>
         </article>
 
