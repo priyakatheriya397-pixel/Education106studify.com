@@ -1,201 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content - Web Study Hub</title>
+    <title>Content - Educational Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #080c14; color: #ffffff; min-height: 100vh; }
+
+        .app-navbar {
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            background: rgba(15, 23, 42, 0.9); padding: 12px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; backdrop-filter: blur(12px);
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0f2027;
-            color: #ffffff;
-            padding: 20px 15px;
+        .nav-tab {
+            color: #38bdf8; text-decoration: none; font-weight: 600; font-size: 13px;
+            padding: 6px 14px; border-radius: 6px; background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease; border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        /* All Connected Navigation Links Bar */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            flex-wrap: wrap;
+        .nav-tab:hover { background: #38bdf8; color: #0f172a; box-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        .nav-tab.active { background: #06b6d4; color: #ffffff; border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.6); }
+
+        .container { margin-top: 100px; padding: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        
+        .box {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px; border-radius: 16px; margin-bottom: 20px;
         }
 
-        .nav-link {
-            color: #00d2ff;
-            text-decoration: none;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: #00d2ff;
-            color: #0f2027;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-        }
-
-        /* Active Page Highlight */
-        .nav-link.active {
-            background: #00d2ff;
-            color: #0f2027;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .banner-container {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .neon-banner {
-            background: #0a192f;
-            border-radius: 12px;
-            border: 2px solid #00d2ff;
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
-            max-width: 100%;
-            height: auto;
-        }
-
-        .cursive-content {
-            font-family: 'Comic Sans MS', 'Apple Chancery', 'Lucida Handwriting', cursive;
-            line-height: 1.8;
-            font-size: 1.15rem;
-            color: #e0e0e0;
-        }
-
-        h1, h2 {
-            font-family: 'Segoe UI', sans-serif;
-            color: #00d2ff;
-            border-bottom: 2px solid rgba(0, 210, 255, 0.3);
-            padding-bottom: 8px;
-            margin-top: 30px;
-        }
-
-        h1 { margin-top: 0; font-size: 2.2rem; }
-        ul { padding-left: 20px; margin-top: 10px; }
-        li { margin-bottom: 10px; }
-        p { margin-top: 10px; margin-bottom: 15px; }
-        .highlight { color: #ffeb3b; font-weight: bold; }
-
-        .cta-wrapper {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .btn-gk-test {
-            display: inline-block;
-            padding: 16px 32px;
-            background: linear-gradient(45deg, #7f00ff, #ff007f);
-            color: #ffffff;
-            text-decoration: none;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(127, 0, 255, 0.5);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-gk-test:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 0, 127, 0.8);
-        }
+        h2 { color: #38bdf8; margin-bottom: 10px; }
+        p { color: #ccc; line-height: 1.6; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <main class="container">
+    <nav class="app-navbar">
+        <a href="index.html" class="nav-tab">Login</a>
+        <a href="menu.html" class="nav-tab">Menu</a>
+        <a href="science.html" class="nav-tab">Science</a>
+        <a href="content.html" class="nav-tab active">Content</a>
+        <a href="explore.html" class="nav-tab">Explore</a>
+        <a href="start-learning.html" class="nav-tab">Start Learn</a>
+        <a href="gklevel1.html" class="nav-tab">GK Test</a>
+        <a href="certificate.html" class="nav-tab">Certificate</a>
+    </nav>
 
-        <!-- Connected Pages Navigation -->
-        <nav class="navbar">
-            <a href="index.html" class="nav-link">Login</a>
-            <a href="menu.html" class="nav-link">Menu</a>
-            <a href="content.html" class="nav-link active">Content</a>
-            <a href="explore.html" class="nav-link">Explore</a>
-            <a href="start-learn.html" class="nav-link">Start Learn</a>
-            <a href="gklevel1.html" class="nav-link">GK Test</a>
-        </nav>
-        
-        <!-- Live Neon SVG Banner -->
-        <div class="banner-container">
-            <svg class="neon-banner" width="300" height="780" viewBox="0 0 300 780">
-                <defs>
-                    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="5" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-                <path d="M0 100 H300 M0 200 H300 M0 300 H300 M0 400 H300 M0 500 H300 M0 600 H300 M0 700 H300 M75 0 V780 M150 0 V780 M225 0 V780" stroke="#102a45" stroke-width="1"/>
-                <text x="25" y="40" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">import dev_hub;</text>
-                <text x="210" y="70" font-family="monospace" font-size="11" fill="#ff007f" opacity="0.6">&lt;main&gt;</text>
-                <text x="50%" y="320" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="bold" fill="#00d2ff" text-anchor="middle" filter="url(#neon-glow)">&lt; CODE &gt;</text>
-                <text x="50%" y="360" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="bold" fill="#00d2ff" text-anchor="middle" filter="url(#neon-glow)">&lt; STUDY &gt;</text>
-                <text x="50%" y="410" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ff007f" text-anchor="middle" filter="url(#neon-glow)">WEB DEVELOPMENT HUB</text>
-                <circle cx="150" cy="480" r="10" stroke="#ffaa00" stroke-width="2" fill="none" filter="url(#neon-glow)"/>
-                <line x1="100" y1="520" x2="200" y2="520" stroke="#00e676" stroke-width="2" filter="url(#neon-glow)"/>
-                <text x="30" y="680" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">while (true) {</text>
-                <text x="50" y="710" font-family="monospace" font-size="11" fill="#ffaa00" opacity="0.6">keep_learning();</text>
-                <text x="30" y="740" font-family="monospace" font-size="11" fill="#00ff00" opacity="0.6">}</text>
-            </svg>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #38bdf8;">📖 Course Content</h1>
+
+        <div class="box">
+            <h2>1. Web Development Basics</h2>
+            <p>Sikhein HTML, CSS, aur JavaScript step-by-step interactive lessons ke saath.</p>
         </div>
 
-        <!-- Main Educational Content -->
-        <article class="cursive-content">
-            <h1>What is Coding? (Extended Definition)</h1>
-            <p>Coding, often referred to as computer programming, is the technical process of designing and building an executable computer program to accomplish a specific computing result or to perform a specific task. It involves writing instructions in specialized programming languages such as Python, JavaScript, C++, or HTML. These languages act as a medium of communication between human logic and electronic hardware, converting abstract problem-solving concepts into binary code that microprocessors can instantly compute, execute, and display on user screens worldwide.</p>
-
-            <h2>How to Study Coding Efficiently</h2>
-            <p>Learning to code requires a systematic approach rather than just reading theory. A student must focus on the core principles of computation, which include logical thinking, understanding complex system architectures, and algorithmic problem-solving. True knowledge comes from debugging and reading raw errors rather than just copying tutorials. You must build custom sandboxes, run local scripts daily, and understand how front-end markup interacts with server-side processing layers.</p>
-
-            <h2>Your Strategic Daily Routine</h2>
-            <ul>
-                <li><span class="highlight">07:00 AM - 08:30 AM</span>: Morning Logic Building — Practice data structures and basic logical algorithms on platforms like LeetCode or HackerRank while your mind is completely fresh.</li>
-                <li><span class="highlight">10:00 AM - 01:00 PM</span>: Core Development Blocks — Dedicate this solid timeframe to writing fresh HTML, CSS layout rules, and integrating scripting languages like JavaScript.</li>
-                <li><span class="highlight">03:00 PM - 05:00 PM</span>: Project Architecture — Work entirely on your independent web builds, structuring files properly, and fixing broken page elements.</li>
-                <li><span class="highlight">07:00 PM - 08:30 PM</span>: Review & Document — Read open-source code documentation, analyze expert design structures, and write clean notes regarding your daily errors and bug solutions.</li>
-            </ul>
-
-            <h2>Key Coding Pillars</h2>
-            <p>Every software system stands on three fundamental components: Data structures which organize information securely inside a system memory, control flows which dictate conditions and decision-making logic patterns, and input-output operations which let external users interact seamlessly with back-end databases.</p>
-            
-            <!-- Button Link to gklevel1.html -->
-            <div class="cta-wrapper">
-                <a href="gklevel1.html" class="btn-gk-test">📝 GK QUESTION TEST LEVEL & TAKE YOUR CERTIFICATE</a>
-            </div>
-        </article>
-
-    </main>
+        <div class="box">
+            <h2>2. Practical Science &amp; Projects</h2>
+            <p>Check karein hamaara naya <strong>Science Section</strong> jahan 3D Space visuals aur DIY Mini RC Car guide di gayi hai.</p>
+        </div>
+    </div>
 
 </body>
 </html>
